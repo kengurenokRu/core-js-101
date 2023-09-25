@@ -400,7 +400,7 @@ function evaluateTicTacToePosition(/* position */) {
 
 
 module.exports = {
-  getFizzBuzz,
+/*  getFizzBuzz,
   getFactorial,
   getSumBetweenNumbers,
   isTriangle,
@@ -416,5 +416,5 @@ module.exports = {
   toNaryString,
   getCommonDirectoryPath,
   getMatrixProduct,
-  evaluateTicTacToePosition,
+  evaluateTicTacToePosition,*/
 };

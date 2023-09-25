@@ -568,7 +568,7 @@ function swapHeadAndTail(/* arr */) {
 
 
 module.exports = {
-  findElement,
+ /* findElement,
   generateOdds,
   doubleArray,
   getArrayOfPositives,
@@ -598,5 +598,5 @@ module.exports = {
   group,
   selectMany,
   getElementByIndexes,
-  swapHeadAndTail,
+  swapHeadAndTail,*/
 };
