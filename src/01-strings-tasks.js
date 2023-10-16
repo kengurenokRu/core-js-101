@@ -67,8 +67,9 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  const str = value.slice(7).slice(-1);
-  return str;
+  const str = value.substring(7);
+  const str2 = str.substring(0, str.length - 1);
+  return str2;
 }
 
 
@@ -98,7 +99,10 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-  return value.trimStart(value.replace(/[^\w\s]/gi, ''));
+  let str = value.trimStart(value.replace(/[^\w\s]/gi, ''));
+  str = str.trimEnd();
+  str = str.trimStart();
+  return str;
 }
 
 /**
@@ -114,7 +118,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  */
 function repeatString(value, count) {
   let value2 = '';
-  for (let i = 1; i < count; i += 1) value2 += value;
+  for (let i = 1; i <= count; i += 1) value2 += value;
   return value2;
 }
 
@@ -146,7 +150,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  return str.replace(/<>/g, '');
+  return str.substring(1, str.length - 1);
 }
 
 
@@ -206,8 +210,23 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  let str1 = '┌';
+  let str2 = '│';
+  let str3 = '└';
+  for (let i = 1; i < width - 1; i += 1) {
+    str1 += '─';
+    str2 += ' ';
+    str3 += '─';
+  }
+  str1 += '┐\n';
+  str2 += '│\n';
+  str3 += '┘\n';
+  for (let i = 1; i < height - 1; i += 1) {
+    str1 += str2;
+  }
+  str1 += str3;
+  return str1;
 }
 
 
@@ -227,8 +246,16 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const str2 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ?!,.';
+  const str3 = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm ?!,.';
+  let newStr = '';
+  for (let i = 0; i < str.length; i += 1) {
+    let k = 0;
+    for (k = 0; k < str2.length; k += 1) if (str2[k] === str[i]) break;
+    newStr += str3[k];
+  }
+  return newStr;
 }
 
 /**
@@ -244,8 +271,9 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  if (typeof value === 'string' || value instanceof String) return true;
+  return false;
 }
 
 
@@ -273,8 +301,19 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  let numb = 0;
+  if (value[0] === 'A') numb = 0;
+  else if (value[0] === '1') numb = 9;
+  else if (value[0] === 'J') numb = 10;
+  else if (value[0] === 'Q') numb = 11;
+  else if (value[0] === 'K') numb = 12;
+  else numb = parseInt(value[0], 10) - 1;
+  const i = value.length - 1;
+  if (value[i] === '♦') numb += 13;
+  else if (value[i] === '♥') numb += 26;
+  if (value[i] === '♠') numb += 39;
+  return numb;
 }
 
 
