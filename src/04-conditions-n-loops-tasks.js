@@ -43,8 +43,10 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  let k = 1;
+  for (let i = 2; i <= n; i += 1) k *= i;
+  return k;
 }
 
 
@@ -60,8 +62,10 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let sum = 0;
+  for (let i = n1; i <= n2; i += 1) sum += i;
+  return sum;
 }
 
 
@@ -80,8 +84,24 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  let minA = 0;
+  let minB = 0;
+  let maxC = 0;
+  if ((a <= b) && (a <= c)) minA = a;
+  if ((b <= a) && (b <= c)) minA = b;
+  if ((c <= b) && (c <= a)) minA = c;
+
+  if (((a >= b) && (a <= c)) || ((a <= b) && (a >= c))) minB = a;
+  if (((b >= a) && (b <= c)) || ((b <= a) && (b >= c))) minB = b;
+  if (((c >= b) && (c <= a)) || ((c <= b) && (c >= a))) minB = c;
+
+  if ((a >= b) && (a >= c)) maxC = a;
+  if ((b >= a) && (b >= c)) maxC = b;
+  if ((c >= b) && (c >= a)) maxC = c;
+
+  if (minA + minB > maxC) return true;
+  return false;
 }
 
 
