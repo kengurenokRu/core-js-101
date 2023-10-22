@@ -267,8 +267,10 @@ function reverseString(str) {
  */
 function reverseInteger(num) {
   let newStr = '';
-  while (num !== 0) {
-    newStr += num % 10;
+  let num2 = num;
+  while (num2 !== 0) {
+    newStr += num2 % 10;
+    num2 = Math.trunc(num2 / 10);
   }
   return parseInt(newStr, 10);
 }
