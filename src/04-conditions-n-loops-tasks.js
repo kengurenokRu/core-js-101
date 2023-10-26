@@ -434,8 +434,17 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const newMatrix = [];
+  for (let i = 0; i < m1.length; i += 1) newMatrix[i] = [];
+  for (let k = 0; k < m2[0].length; k += 1) {
+    for (let i = 0; i < m1.length; i += 1) {
+      let sum = 0;
+      for (let j = 0; j < m1[i].length; j += 1) sum += m1[i][j] * m2[j][k];
+      newMatrix[i][k] = sum;
+    }
+  }
+  return newMatrix;
 }
 
 
@@ -469,8 +478,42 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  if ((position[0][0] === position[0][1]) && (position[0][0] === position[0][2])
+
+  && (position[0][0] !== undefined)) {
+    return position[0][0];
+  }
+  if ((position[1][0] === position[1][1]) && (position[1][0] === position[1][2])
+  && (position[1][0] !== undefined)) {
+    return position[1][0];
+  }
+  if ((position[2][0] === position[2][1]) && (position[2][0] === position[2][2])
+  && (position[2][0] !== undefined)) {
+    return position[2][0];
+  }
+  if ((position[0][0] === position[1][0]) && (position[0][0] === position[2][0])
+
+  && (position[0][0] !== undefined)) {
+    return position[0][0];
+  }
+  if ((position[0][1] === position[1][1]) && (position[0][1] === position[2][1])
+  && (position[0][1] !== undefined)) {
+    return position[0][1];
+  }
+  if ((position[0][2] === position[1][2]) && (position[0][2] === position[2][2])
+  && (position[0][2] !== undefined)) {
+    return position[0][2];
+  }
+  if ((position[0][0] === position[1][1]) && (position[0][0] === position[2][2])
+  && (position[0][0] !== undefined)) {
+    return position[0][0];
+  }
+  if ((position[0][2] === position[1][1]) && (position[0][2] === position[2][0])
+  && (position[0][2] !== undefined)) {
+    return position[0][2];
+  }
+  return undefined;
 }
 
 

@@ -260,8 +260,8 @@ function getMovingSum(/* arr */) {
  * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
  * [ "a" ] => []
  */
-function getSecondItems(/* arr */) {
-  throw new Error('Not implemented');
+function getSecondItems(arr) {
+  return arr.filter((el, i) => i % 2);
 }
 
 
@@ -297,8 +297,9 @@ function propagateItemsByPositionIndex(/* arr */) {
  *   [ 1,2,3,4,5,6,7,8,9,10 ] => [ 10, 9, 8 ]
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
-function get3TopItems(/* arr */) {
-  throw new Error('Not implemented');
+function get3TopItems(arr) {
+  arr.sort((a, b) => b - a);
+  return arr.slice(0, 3);
 }
 
 
@@ -333,8 +334,43 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const arrNumb = arr.map((el) => {
+    let temp = '';
+    switch (el) {
+      case 'zero': temp = 0; break;
+      case 'one': temp = 1; break;
+      case 'two': temp = 2; break;
+      case 'three': temp = 3; break;
+      case 'four': temp = 4; break;
+      case 'five': temp = 5; break;
+      case 'six': temp = 6; break;
+      case 'seven': temp = 7; break;
+      case 'eight': temp = 8; break;
+      case 'nine': temp = 9; break;
+      default: break;
+    }
+    return temp;
+  });
+  arrNumb.sort((a, b) => a - b);
+  const newArr = arrNumb.map((el) => {
+    let temp = '';
+    switch (el) {
+      case 0: temp = 'zero'; break;
+      case 1: temp = 'one'; break;
+      case 2: temp = 'two'; break;
+      case 3: temp = 'three'; break;
+      case 4: temp = 'four'; break;
+      case 5: temp = 'five'; break;
+      case 6: temp = 'six'; break;
+      case 7: temp = 'seven'; break;
+      case 8: temp = 'eight'; break;
+      case 9: temp = 'nine'; break;
+      default: break;
+    }
+    return temp;
+  });
+  return newArr;
 }
 
 /**
@@ -401,8 +437,9 @@ function findAllOccurrences(arr, item) {
  *    [1, 2, 3, 4, 5]                   => '1,2,3,4,5'
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  const newStr = arr.reduce((str, value) => `${str},${value}`, '');
+  return newStr.slice(1);
 }
 
 
@@ -432,8 +469,14 @@ function toStringList(/* arr */) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  return arr.sort((a, b) => {
+    if (a.country < b.country) return -1;
+    if (a.country > b.country) return 1;
+    if (a.city < b.city) return -1;
+    if (a.city > b.city) return 1;
+    return 0;
+  });
 }
 
 /**
